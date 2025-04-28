@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tidi
+  namespace: argocd
+spec:
+  description: Tidi Services Project
+  # Cho phép lấy mã nguồn từ bất kỳ kho lưu trữ nào
+  sourceRepos:
+  - '*'
+  # Các đích đến cho phép
+  destinations:
+  - namespace: tidi
+    server: https://kubernetes.default.svc
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  # Danh sách các tài nguyên cấp cụm được phép
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  # Danh sách các tài nguyên cấp namespace được phép
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
